@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  website:
+    build: .
+    command: >
+      gunicorn -b 0.0.0.0:8000
+        --access-logfile -
+        --reload
+        "usedcarpartlocator.app:create_app()"
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    volumes:
+      - '.:/usedcarpartlocator'
+    ports:
+      - '8000:8000'
+
